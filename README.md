@@ -7,4 +7,4 @@ Flask Help Tools is a Python library that provides examples and solutions for co
 You can install Flask Help Tools using pip:
 
 ```bash
-pip pip install flask-help-tools
+pip install flask-help-tools

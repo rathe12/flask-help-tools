@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='flask-help-tools',
-    version='0.1.0',
+    version='0.2.0',
     author='rathe12',
     author_email='markzerone1@gmail.com',
     description='A library that provides examples and solutions for common tasks in Flask applications',

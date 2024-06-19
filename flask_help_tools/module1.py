@@ -1,11 +1,17 @@
 def function1():
 
-    # from flask import render_template, url_for, flash, redirect, request
+    # import shutil
+    # from flask import render_template, url_for, flash, redirect, request, send_file
     # from flask_login import login_user, current_user, logout_user, login_required
+    # from werkzeug.utils import secure_filename
+    # from werkzeug.security import generate_password_hash
+    # import os
+    # import pandas as pd
     # from app import db, app
     # from app.models import User, Order, OrderItem, Shift
     # from app.forms import LoginForm, UserForm, ShiftForm
     # from datetime import datetime
+    # from config import Config
 
     # @app.route('/')
     # def home():
@@ -125,6 +131,96 @@ def function1():
     #     order_items = {order.id: OrderItem.query.filter_by(
     #         order_id=order.id).all() for order in orders}
     #     return render_template('admin_view_orders.html', orders=orders, order_items=order_items)
+
+    # def allowed_file(filename):
+    #     return '.' in filename and filename.rsplit('.', 1)[1].lower() in Config.ALLOWED_EXTENSIONS
+
+    # @app.route('/admin/upload', methods=['GET', 'POST'])
+    # def upload_file():
+    #     if current_user.role != 'админ':
+    #         flash('You are not authorized to access this page', 'danger')
+    #         return redirect(url_for('home'))
+    #     if request.method == 'POST':
+    #         # Проверяем, был ли файл загружен
+    #         if 'file' not in request.files:
+    #             flash('Файл не найден в запросе', 'danger')
+    #             return redirect(request.url)
+
+    #         file = request.files['file']
+
+    #         # Проверяем, выбран ли файл
+    #         if file.filename == '':
+    #             flash('Файл не выбран', 'danger')
+    #             return redirect(request.url)
+
+    #         if file and allowed_file(file.filename):
+    #             filename = secure_filename(file.filename)
+    #             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    #             file.save(filepath)
+
+    #             # Чтение данных из Excel файла
+    #             df = pd.read_excel(filepath)
+
+    #             # Проверка на наличие необходимых столбцов
+    #             required_columns = ['ФИО', 'Роль', 'Логин', 'Пароль']
+    #             if not all(col in df.columns for col in required_columns):
+    #                 flash('В Excel файле отсутствуют необходимые столбцы')
+    #                 return redirect(request.url)
+
+    #             # Преобразование данных
+    #             users = []
+    #             for index, row in df.iterrows():
+    #                 try:
+    #                     # Делим ФИО на first_name и last_name
+    #                     first_name, last_name = row['ФИО'].split()[:2]
+    #                 except ValueError:
+    #                     flash(f'Невозможно разделить ФИО: {row["ФИО"]}')
+    #                     continue
+
+    #                 user = User(
+    #                     first_name=first_name,
+    #                     last_name=last_name,
+    #                     email=row['Логин'],
+    #                     # Предполагается, что пароли уже захешированы в файле
+    #                     password_hash=generate_password_hash(row['Пароль']),
+    #                     role=row['Роль'],
+    #                     status='работает'  # Используем значение по умолчанию
+    #                 )
+    #                 users.append(user)
+
+    #             # Вставка данных в базу данных
+    #             try:
+    #                 db.session.bulk_save_objects(users)
+    #                 db.session.commit()
+    #                 flash(
+    #                     'Файл успешно загружен и данные вставлены в базу данных', 'success')
+    #             except Exception as e:
+    #                 db.session.rollback()
+    #                 flash(f'Ошибка при вставке данных в базу данных: {str(e)}')
+
+    #             return redirect(url_for('home'))
+
+    #     return render_template('upload.html')
+
+    # @app.route('/admin/backup', methods=['GET'])
+    # def backup_database():
+    #     if current_user.role != 'админ':
+    #         flash('You are not authorized to access this page', 'danger')
+    #         return redirect(url_for('home'))
+    #     try:
+    #         # Создаем имя файла для резервной копии
+    #         backup_filename = f"backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}.db"
+    #         backup_path = os.path.join(Config.BACKUP_FOLDER, backup_filename)
+
+    #         # Копируем файл базы данных
+    #         shutil.copy2(Config.DB_PATH, backup_path)
+
+    #         flash('Резервная копия базы данных успешно создана', 'success')
+    #         return send_file(backup_path, as_attachment=True)
+    #     except Exception as e:
+    #         flash(f'Ошибка при создании резервной копии: {str(e)}', 'danger')
+    #         # Предположим, что у вас есть маршрут 'index'
+    #         return redirect(url_for('home'))
 
     # @app.route('/waiter/dashboard')
     # @login_required

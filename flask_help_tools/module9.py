@@ -25,6 +25,8 @@ def function6():
     #     routes.py
     # instance/
     #    site.db
+    # uploads/
+    # backups/
     # config.py
     # run.py
 

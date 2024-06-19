@@ -7,6 +7,7 @@ def function7():
     # <div class="admin-dashboard">
     #     <h2>Пользователи</h2>
     #     <a class="btn btn-primary" href="{{ url_for('create_user') }}">Новый пользователь</a>
+    #     <a class="btn btn-primary" href="{{ url_for('backup_database') }}">Создать бекап</a>
     #     <table class="table">
     #         <thead>
     #             <tr>
@@ -225,6 +226,7 @@ def function7():
     # {% block content %}
     # <div class="create-user">
     #     <h1>Создать пользователя</h1>
+    #     <a class="btn btn-primary" href="{{ url_for('upload_file') }}">Загрузить из файла</a>
     #     <form method="POST">
     #         {{ form.hidden_tag() }}
     #             <div class="flex-items">
@@ -366,6 +368,28 @@ def function7():
     #         </div>
     #         <button type="submit" class="btn btn-primary">Изменить статус</button>
     #     </form>
+    # {% endblock %}
+
+    # upload.html
+
+    # {% extends 'layout.html' %}
+
+    # {% block content %}
+    # <h1>Upload new File</h1>
+    # <form method="post" enctype="multipart/form-data">
+    # <input type="file" name="file">
+    # <input type="submit" value="Upload">
+    # </form>
+    # {% with messages = get_flashed_messages() %}
+    # {% if messages %}
+    #     <ul>
+    #     {% for message in messages %}
+    #         <li>{{ message }}</li>
+    #     {% endfor %}
+    #     </ul>
+    # {% endif %}
+    # {% endwith %}
+
     # {% endblock %}
 
     # view_shifts.html

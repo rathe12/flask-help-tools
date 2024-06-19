@@ -1,5 +1,5 @@
 import unittest
-from flask_demo_helper.module2 import function2
+from flask_help_tools.module2 import function2
 
 
 class TestModule2(unittest.TestCase):

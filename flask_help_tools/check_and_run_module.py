@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import time
 from flask import Flask
 
 # Список необходимых библиотек
@@ -31,6 +32,7 @@ def check_and_run():
     # Проверка библиотек
     check_libraries(required_libraries)
 
+    time.sleeep(10)
     # Тестовое приложение Flask
     app = Flask(__name__)
 

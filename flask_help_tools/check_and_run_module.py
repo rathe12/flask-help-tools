@@ -32,7 +32,7 @@ def check_and_run():
     # Проверка библиотек
     check_libraries(required_libraries)
 
-    time.sleeep(10)
+    time.sleep(10)
     # Тестовое приложение Flask
     app = Flask(__name__)
 
